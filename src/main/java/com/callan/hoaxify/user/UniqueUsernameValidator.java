@@ -5,6 +5,8 @@ import jakarta.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Optional;
+
 public class UniqueUsernameValidator implements ConstraintValidator<UniqueUsername, String>{
 
     @Autowired
@@ -16,7 +18,8 @@ public class UniqueUsernameValidator implements ConstraintValidator<UniqueUserna
         if(this.userRepository == null){
             return true;
         }
-        User inDB = userRepository.findByUsername(value);
+        Optional<User> inDB = userRepository.findByUsername(value);
+
         if(inDB == null) {
             return true;
         }

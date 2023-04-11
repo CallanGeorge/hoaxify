@@ -25,13 +25,14 @@ import java.util.Collection;
 @Entity
 @Table(name="users")
 
+
 public class User implements UserDetails {
     @Id
     @GeneratedValue
-    @JsonView(Views.Base.class)
+
     private Long id;
     @NotNull
-    @JsonView(Views.Base.class)
+
     @UniqueUsername
     private String username;
 
@@ -40,11 +41,10 @@ public class User implements UserDetails {
     private String password;
 
 
-
     @Override
     @Transient
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.createAuthorityList("Role_USER");
+        return AuthorityUtils.createAuthorityList("ROLE_USER");
     }
 
     @Override

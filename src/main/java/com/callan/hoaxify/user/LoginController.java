@@ -4,6 +4,10 @@ package com.callan.hoaxify.user;
 import com.callan.hoaxify.shared.CurrentUser;
 
 
+import com.callan.hoaxify.shared.GenericResponse;
+import com.callan.hoaxify.user.vm.UserVM;
+import com.fasterxml.jackson.annotation.JsonView;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -17,9 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1")
 public class LoginController {
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping("/login")
-    User handleLogin(@CurrentUser User loggedInUser){
-        return loggedInUser;
+
+    UserVM handleLogin(@CurrentUser User loggedInUser){
+        return new UserVM(loggedInUser);
     }
 
 

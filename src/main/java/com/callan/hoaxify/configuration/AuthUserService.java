@@ -10,20 +10,20 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+
 @Service
 public class AuthUserService implements UserDetailsService {
     @Autowired
     UserRepository userRepository;
 
+    public AuthUserService (UserRepository userRepository){
+        this.userRepository = userRepository;
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+       return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username Not Found " + username ));
 
-        if(user == null){
-            throw new UsernameNotFoundException("User Not Found.");
-        } else{
-            return user;
-        }
-    }
-}
+
+}}
