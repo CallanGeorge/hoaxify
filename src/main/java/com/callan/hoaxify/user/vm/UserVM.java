@@ -19,6 +19,4 @@ public class UserVM {
         this.setUsername(user.getUsername());
     }
 
-    public UserVM(Optional<User> user) {
-    }
 }

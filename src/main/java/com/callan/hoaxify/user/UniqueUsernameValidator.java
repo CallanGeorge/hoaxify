@@ -18,7 +18,7 @@ public class UniqueUsernameValidator implements ConstraintValidator<UniqueUserna
         if(this.userRepository == null){
             return true;
         }
-        Optional<User> inDB = userRepository.findByUsername(value);
+        User inDB = userRepository.findByUsername(value);
 
         if(inDB == null) {
             return true;

@@ -34,16 +34,9 @@ public class UserController {
     UserRepository userRepository;
 
     @PostMapping("/users")
-    GenericResponse createUser ( @RequestBody User user){
-        Optional<User> currentUser = userRepository.findByUsername(user.getUsername());
-
-        if(user.getUsername() == null || user.getPassword() == null || currentUser.isPresent()){
-            throw new UserNotValidException();
-        }else {
-
-            userService.save(user);
-            return new GenericResponse("New User Created.");
-        }
+    GenericResponse createUser (@Valid @RequestBody User user){
+        userService.save(user);
+        return new GenericResponse("User saved");
     }
 
     @GetMapping("/users")
@@ -53,15 +46,9 @@ public class UserController {
     }
 
     @GetMapping("/users/{username}")
-    UserVM getByUsername(@PathVariable String username) throws Exception{
-        Optional<User> user = userService.getByUsername(username);
-
-        if(user.isEmpty()){
-            throw new Exception("No user found with that username");
-        } else{
-            return new UserVM(user);
-
-        }
+    UserVM getByUsername(@PathVariable String username){
+        User user = userService.getByUsername(username);
+        return new UserVM(user);
 
     }
 
