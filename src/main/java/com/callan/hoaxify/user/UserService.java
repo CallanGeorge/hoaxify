@@ -2,10 +2,11 @@ package com.callan.hoaxify.user;
 
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -32,5 +33,9 @@ public class UserService {
     public Page<User> getUsers(Pageable page){
 
         return userRepository.findAll(page);
+    }
+
+    public Optional<User> getByUsername(String username){
+        return userRepository.findByUsername(username);
     }
 }

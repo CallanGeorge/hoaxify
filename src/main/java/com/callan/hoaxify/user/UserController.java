@@ -11,6 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,9 +47,22 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    Page<UserVM> getUsers(@PageableDefault(size = 10) Pageable
+    Page<UserVM> getUsers( Pageable
         page){
         return userService.getUsers(page).map(user -> new UserVM(user));
+    }
+
+    @GetMapping("/users/{username}")
+    UserVM getByUsername(@PathVariable String username) throws Exception{
+        Optional<User> user = userService.getByUsername(username);
+
+        if(user.isEmpty()){
+            throw new Exception("No user found with that username");
+        } else{
+            return new UserVM(user);
+
+        }
+
     }
 
     }
