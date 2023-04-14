@@ -1,11 +1,13 @@
 package com.callan.hoaxify.user;
 
 
+import com.callan.hoaxify.match.Match;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotNull;
@@ -19,6 +21,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 
 @Data
@@ -39,6 +42,9 @@ public class User implements UserDetails {
 
     @NotNull
     private String password;
+
+
+    private int score = 0;
 
 
     @Override

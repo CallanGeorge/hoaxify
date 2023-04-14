@@ -14,9 +14,12 @@ public class UserVM {
 
     private String username;
 
+    private int score;
+
     public UserVM(User user){
         this.setId(user.getId());
         this.setUsername(user.getUsername());
+        this.setScore(user.getScore());
     }
 
 }
