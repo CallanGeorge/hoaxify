@@ -30,13 +30,21 @@ public class Match {
 
    // create a winner column null at first - would hold player id
 
+    private Boolean player1Voted = false;
 
-    @NotNull
+    private Boolean player2Voted = false;
+
+    private String player1Vote;
+
+    private String player2Vote;
+
+
+
     private String dateTime;
 
     private Boolean accepted = false;
 
-    private String winner;
+    private String winner ;
 
 
 }
