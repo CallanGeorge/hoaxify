@@ -25,6 +25,11 @@ public class MatchController {
     @Autowired
     MatchService matchService;
 
+    @GetMapping("/all-matches")
+    Page<Match> getAllMatches (Pageable page){
+        return matchService.getMatches(page);
+    }
+
     @GetMapping("/match/{id}")
     Match getSingleMatch (@PathVariable long id){
         Match match = matchService.getSingleMatch(id);

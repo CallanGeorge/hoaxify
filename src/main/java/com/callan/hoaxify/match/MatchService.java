@@ -4,6 +4,8 @@ import ch.qos.logback.core.joran.util.ConfigurationWatchListUtil;
 import com.callan.hoaxify.user.User;
 import com.callan.hoaxify.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,6 +28,10 @@ public class MatchService {
 
     public void save( Match match){
         matchRepository.save(match);
+    }
+
+    public Page<Match> getMatches(Pageable page ){
+        return matchRepository.findAll(page);
     }
 
     public Match getSingleMatch (long id){
