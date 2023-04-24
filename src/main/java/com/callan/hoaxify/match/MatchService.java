@@ -31,7 +31,7 @@ public class MatchService {
     }
 
     public Page<Match> getMatches(Pageable page ){
-        return matchRepository.findAll(page);
+        return matchRepository.findAllByWinnerIsNotNull(page);
     }
 
     public Match getSingleMatch (long id){
@@ -50,14 +50,22 @@ public class MatchService {
         return allInvites;
     }
 
-    public List<Match> getUserMatches(String username){
+    public List<Match> getFinalUserMatches(String username){
+        List<Match> matches = matchRepository.findAllByPlayer1AndWinnerIsNotNull(username);
+        List<Match> moreMatches = matchRepository.findAllByPlayer2AndWinnerIsNotNull(username);
+
+        List<Match> allMatches = new ArrayList<Match>(matches);
+        allMatches.addAll(moreMatches);
+
+        return allMatches;
+    }
+
+    public List<Match> getOngoingUserMatches(String username){
         List<Match> matches = matchRepository.findAllByPlayer1AndWinnerIsNullAndAcceptedIsTrue(username);
         List<Match> moreMatches = matchRepository.findAllByPlayer2AndWinnerIsNullAndAcceptedIsTrue(username);
 
         List<Match> allMatches = new ArrayList<Match>(matches);
         allMatches.addAll(moreMatches);
-
-
 
         return allMatches;
     }

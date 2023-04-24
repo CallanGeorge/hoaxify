@@ -33,7 +33,7 @@ public class UserService {
 
     public Page<User> getUsers(Pageable page){
 
-        return userRepository.findAll(page);
+        return userRepository.findAllByOrderByScoreDesc(page);
     }
 
     public User getByUsername(String username){

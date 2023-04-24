@@ -29,7 +29,7 @@ import java.util.List;
 @Table(name="users")
 
 
-public class User implements UserDetails {
+public class User implements UserDetails, Comparable<User> {
     @Id
     @GeneratedValue
 
@@ -75,5 +75,10 @@ public class User implements UserDetails {
     @Transient
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return this.score - o.score;
     }
 }

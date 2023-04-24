@@ -19,16 +19,19 @@ public class HoaxifyApplication {
     }
 
 
-    @Bean
-    CommandLineRunner run (UserService userService){
-        return (args) -> {
-            IntStream.rangeClosed(1,15).mapToObj(i -> {
-                User user = new User();
-                user.setUsername("user"+ i);
-                user.setPassword("password");
-                return user;
-            })
-                .forEach(userService::save);
-        };
-    }
+
+    // DO NOT NEED THIS AS IT NOW IS STORED IN DB
+
+//    @Bean
+//    CommandLineRunner run (UserService userService){
+//        return (args) -> {
+//            IntStream.rangeClosed(1,15).mapToObj(i -> {
+//                User user = new User();
+//                user.setUsername("user"+ i);
+//                user.setPassword("password");
+//                return user;
+//            })
+//                .forEach(userService::save);
+//        };
+//    }
 }

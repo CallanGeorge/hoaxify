@@ -38,9 +38,16 @@ public class MatchController {
 
     @GetMapping("/matches/{username}")
     List<Match> getUserMatches ( @PathVariable String username){
-        List<Match> matches = matchService.getUserMatches(username);
+        List<Match> matches = matchService.getOngoingUserMatches(username);
         return matches;
 
+    }
+
+
+    @GetMapping("/final-matches/{username}")
+    List<Match> getFinishedUserMatches(@PathVariable String username){
+        List<Match> matches = matchService.getFinalUserMatches(username);
+            return matches;
     }
 
     @GetMapping("/invites/{username}")
