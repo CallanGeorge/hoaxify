@@ -100,10 +100,11 @@ public class MatchService {
            if(match.getPlayer1Vote().equals(match.getPlayer2Vote())){
                User winner = userRepository.findByUsername(match.getPlayer2Vote());
 
+
                match.setWinner(match.getPlayer1Vote());
                matchRepository.save(match);
 
-               winner.setScore(winner.getScore() + 3);
+               winner.setScore(winner.getScore() + 1);
                userRepository.save(winner);
 
            } else {

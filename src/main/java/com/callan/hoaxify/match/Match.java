@@ -40,7 +40,7 @@ public class Match {
 
 
 
-    private String dateTime;
+   // private String dateTime;
 
     private Boolean accepted = false;
 
