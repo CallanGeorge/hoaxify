@@ -13,7 +13,7 @@ public interface MatchRepository extends JpaRepository<Match, Long> {
     Match getMatchById(long id);
 
 
-    Page<Match> findAllByWinnerIsNotNull(Pageable page);
+    Page<Match> findAllByPlayer1VotedIsTrueAndPlayer2VotedIsTrueOrderByIdDesc(Pageable page);
 
     List<Match>findAllByPlayer1AndWinnerIsNullAndAcceptedIsTrue(String username);
 

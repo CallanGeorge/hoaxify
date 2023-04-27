@@ -38,10 +38,6 @@ public class Match {
 
     private String player2Vote;
 
-
-
-   // private String dateTime;
-
     private Boolean accepted = false;
 
     private String winner ;

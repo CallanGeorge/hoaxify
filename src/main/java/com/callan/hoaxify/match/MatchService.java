@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -31,7 +32,7 @@ public class MatchService {
     }
 
     public Page<Match> getMatches(Pageable page ){
-        return matchRepository.findAllByWinnerIsNotNull(page);
+        return matchRepository.findAllByPlayer1VotedIsTrueAndPlayer2VotedIsTrueOrderByIdDesc(page);
     }
 
     public Match getSingleMatch (long id){
@@ -57,6 +58,8 @@ public class MatchService {
         List<Match> allMatches = new ArrayList<Match>(matches);
         allMatches.addAll(moreMatches);
 
+        Collections.reverse(allMatches);
+
         return allMatches;
     }
 
@@ -66,6 +69,8 @@ public class MatchService {
 
         List<Match> allMatches = new ArrayList<Match>(matches);
         allMatches.addAll(moreMatches);
+
+
 
         return allMatches;
     }
