@@ -60,7 +60,13 @@ public class MatchService {
 
         Collections.reverse(allMatches);
 
-        return allMatches;
+            List<Match> finalMatches = new ArrayList<>();
+
+       for (int i = 0; i < 5; i++){
+           finalMatches.add(allMatches.get(i));
+       }
+
+        return finalMatches;
     }
 
     public List<Match> getOngoingUserMatches(String username){
