@@ -62,9 +62,19 @@ public class MatchService {
 
             List<Match> finalMatches = new ArrayList<>();
 
-       for (int i = 0; i < 5; i++){
-           finalMatches.add(allMatches.get(i));
-       }
+
+            int length=allMatches.size();
+
+            if(length > 4){
+                for (int i = 0; i < 5; i++){
+                    finalMatches.add(allMatches.get(i));
+
+                }
+            } else {
+                finalMatches = allMatches;
+            }
+
+
 
         return finalMatches;
     }
